@@ -1,21 +1,14 @@
 class Hamming
 
   def self.compute(strand1, strand2)
-
-    range1 = 0..strand1.length
-    range2 = 0..strand2.length
-
-    if range1.last < range2.last
-      total_range = 0...range1.last
-    else
-      total_range = 0...range2.last
-    end
-
+    long_strand = [strand1.length, strand2.length].min
     hamming_count = 0
 
-    total_range.count do |x|
+    long_strand.times do |x|
       hamming_count += 1 if strand1[x] != strand2[x]
     end
+    
+    hamming_count
   end
 
 end
